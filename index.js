@@ -28,7 +28,7 @@ module.exports = {
   eqObjects,
   findKey,
   findKeyByValue,
-  head : head,
+  head,
   letterPositions,
   map,
   middle,
