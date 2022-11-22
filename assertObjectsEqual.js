@@ -13,6 +13,8 @@ const assertObjectsEqual = function(actual, expected) {
   }
 };
 
+module.exports = assertObjectsEqual;
+
 // tests for function
-assertObjectsEqual({a:1,b:2,c:[1,2,3]},{c:[1,2,3],b:2,a:1});
-assertObjectsEqual({a:1},{a:1,b:2});
+// assertObjectsEqual({a:1,b:2,c:[1,2,3]},{c:[1,2,3],b:2,a:1});
+// assertObjectsEqual({a:1},{a:1,b:2});
