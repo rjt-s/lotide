@@ -1,45 +1,37 @@
 // Copying Assert Equal function
-const assertEqual = function(actual,expected) {
-  if (actual === expected) {
-    console.log(`✅✅✅ Assertion Passed: [${actual}] === [${expected}]`);
-  } else {
-    console.log(`🛑🛑🛑 Assertion Failed: [${actual}] !== [${expected}]`);
-  }
-};
-
-// copying eqArray function
-const eqArrays = function(arr1,arr2) {
-  if(arr1.length !== arr2.length) {
-    return false;
-  }
-  for(let i = 0; i < arr1.length; i++) {
-    if (arr1[i] !== arr2[i]) {
-      return false;
-    }
-  }
-  return true; 
-};
-
+const assertEqual = require("./assertEqual");
+const eqArrays = require("./eqArrays");
 
 // EqObjects function Implementation
 const eqObjects = function(object1, object2) {
   // checking same number of keys
-  if(Object.keys(object1).length === Object.keys(object2).length) {
-    for(let key of Object.keys(object1)) {
-      if (Array.isArray(object1[key]) && Array.isArray(object2[key])){
-        if(!(eqArrays(object1[key],object2[key]))){
+  let obj1Arr = Object.entries(object1);
+  let obj2Arr = Object.entries(object2);
+
+  if (obj1Arr.length !== obj2Arr.length) {
+    return false;
+  } else {
+    for (let element of obj1Arr) {
+      // compare every key value of object 1 with key value of object 2
+      if (Array.isArray(object1[element[0]])) {
+        if (!(eqArrays(object1[element[0]], object2[element[0]]))) {
+          console.log('i rAN');
           return false;
-        }
-      } else {
-        if(object1[key] !== object2[key]){
+        } 
+      } else  {
+        if ((object1[element[0]] !== object2[element[0]])) {
           return false;
         }
       }
     }
-    return true;
-  } else {
-    return false;
   }
+  return true;
 };
 
+module.exports = eqObjects;
+
 // Tests
+// console.log(eqObjects({a:1,b:2}, {b:2,a:1}))
+// console.log(eqObjects({a:[1,2,3],z:'a'},{z:'a',a:[1,2,3]}));
+// console.log(eqObjects({a:1,b:2,c:3},{a:1,b:2,c:0}));
+// console.log(eqObjects({a:1,b:2},{a:1,b:2,c:3}));
