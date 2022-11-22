@@ -1,17 +1,7 @@
 // assert Equal Arrays func
 
-// copying eqArrays func
-const eqArrays = function(arr1,arr2) {
-  if(arr1.length !== arr2.length) {
-    return false;
-  }
-  for(let i = 0; i < arr1.length; i++) {
-    if (arr1[i] !== arr2[i]) {
-      return false;
-    }
-  }
-  return true; 
-};
+// importing eqArrays
+const eqArrays = require("./eqArrays");
 
 // Implementing assertArraysEqual func
 const assertArraysEqual = function(arr1, arr2) {
@@ -22,9 +12,5 @@ const assertArraysEqual = function(arr1, arr2) {
   }
 };
 
-// Test Cases
-assertArraysEqual([1, 2, 3], [1, 2, 3]);
-assertArraysEqual([1, 2, 3], ['1', 2, 3]);
-assertArraysEqual([1, 2, 3], [1, 2, 3, 4]);
-assertArraysEqual(['a', 'b', 'c'], ['a', 'b', 'c']);
-assertArraysEqual(['a', 'b', 'c'], ['a', 'b', 'C']);
+module.exports = assertArraysEqual
+
